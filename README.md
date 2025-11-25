@@ -152,4 +152,3 @@ Otherwise, please see the [contribution guidelines](CONTRIBUTING.md) for how to 
 
 Barnaby Hunt has killed you
 Again
-
