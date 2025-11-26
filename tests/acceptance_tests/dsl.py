@@ -134,6 +134,6 @@ class Dsl:
         alias = self._decode_alias(name)
         self.driver.cancel_entry_deletion(alias)
 
-    def confirm_entry_exists(self, name=DEFAULT_ENTRY_NAME, register_name = DEFAULT_REGISTER_NAME):
+    def confirm_entry_exists(self, name=DEFAULT_ENTRY_NAME, register_name=DEFAULT_REGISTER_NAME):
         alias = self._decode_alias(name)
         self.driver.confirm_entry_exists(register=self._encode_alias(register_name), entry_name=alias)
