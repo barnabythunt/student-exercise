@@ -234,13 +234,13 @@ class Driver:
         self._view_entry(name)
 
         self._find_and_click(By.LINK_TEXT, "Delete entry")
-    
+
     def confirm_entry_deletion(self, alias):
         confirm_checkbox = self.browser.find_element(By.NAME, "confirm")
         confirm_checkbox.click()
 
         self._find_and_click(By.NAME, "submit")
-    
+
     def confirm_entry_deleted(self, name):
         deleted_message = self.browser.find_element(By.XPATH, "//*[contains(text(),'Successfully deleted entry')]")
         assert deleted_message is not None, "Deleted message not found"
@@ -252,10 +252,10 @@ class Driver:
             raise AssertionError("Deleted entry still exists")
         except NoSuchElementException:
             pass
-    
+
     def cancel_entry_deletion(self, name):
         self._find_and_click(By.LINK_TEXT, "Cancel")
-    
+
     def confirm_entry_exists(self, name):
         self._navigate_to_entries()
 

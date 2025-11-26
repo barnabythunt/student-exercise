@@ -121,7 +121,7 @@ class Dsl:
     def delete_existing_entry(self, name=DEFAULT_ENTRY_NAME):
         alias = self._encode_alias(name)
         self.driver.delete_existing_entry(alias)
-    
+
     def confirm_entry_deletion(self, name=DEFAULT_ENTRY_NAME):
         alias = self._decode_alias(name)
         self.driver.confirm_entry_deletion(alias)
@@ -129,7 +129,7 @@ class Dsl:
     def confirm_entry_deleted(self, name=DEFAULT_ENTRY_NAME):
         alias = self._decode_alias(name)
         self.driver.confirm_entry_deleted(alias)
-    
+
     def cancel_entry_deletion(self, name=DEFAULT_ENTRY_NAME):
         alias = self._decode_alias(name)
         self.driver.cancel_entry_deletion(alias)

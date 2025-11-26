@@ -83,6 +83,7 @@ class EntryForm(FlaskForm):
         if existing:
             raise ValidationError("Name already in use")
 
+
 class EntryDeleteForm(FlaskForm):
     """
     A form used to confirm the deletion of an Entry.

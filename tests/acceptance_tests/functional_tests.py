@@ -113,7 +113,7 @@ class FunctionalTests(TestCase):
         self.dsl.confirm_entry_deletion_requires_confirmation()
         self.dsl.confirm_entry_deletion()
         self.dsl.confirm_entry_deleted()
-    
+
     def test_can_cancel_delete_entry(self):
         self.dsl.ensure_existing_entry()
         self.dsl.delete_existing_entry()
