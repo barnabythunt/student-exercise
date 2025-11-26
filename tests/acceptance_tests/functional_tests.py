@@ -52,14 +52,14 @@ class FunctionalTests(TestCase):
     def test_can_delete_register(self):
         self.dsl.ensure_existing_register()
         self.dsl.delete_existing_register()
-        self.dsl.confirm_deletion_requires_confirmation()
+        self.dsl.confirm_register_deletion_requires_confirmation()
         self.dsl.confirm_register_deletion()
         self.dsl.confirm_register_deleted()
 
     def test_can_cancel_delete_register(self):
         self.dsl.ensure_existing_register()
         self.dsl.delete_existing_register()
-        self.dsl.confirm_deletion_requires_confirmation()
+        self.dsl.confirm_register_deletion_requires_confirmation()
         self.dsl.cancel_register_deletion()
         self.dsl.confirm_register_exists()
 
@@ -93,7 +93,7 @@ class FunctionalTests(TestCase):
 
     def test_edit_entry_name_required(self):
         self.dsl.ensure_existing_entry()
-        self.dsl.update_existing_entry(name="")  # update_existing_entry is new
+        self.dsl.update_existing_entry(name="")
         self.dsl.confirm_name_required_validation_error()
 
     def test_edit_entry_name_must_be_unique(self):
@@ -105,4 +105,18 @@ class FunctionalTests(TestCase):
     def test_can_edit_entry(self):
         self.dsl.ensure_existing_entry(name="Old")
         self.dsl.update_existing_entry(current_name="Old", new_name="New")
-        self.dsl.confirm_entry_updated(old_name="Old", new_name="New")  # confirm_entry_updated is new
+        self.dsl.confirm_entry_updated(old_name="Old", new_name="New")
+
+    def test_can_delete_entry(self):
+        self.dsl.ensure_existing_entry()
+        self.dsl.delete_existing_entry()
+        self.dsl.confirm_entry_deletion_requires_confirmation()
+        self.dsl.confirm_entry_deletion()
+        self.dsl.confirm_entry_deleted()
+    
+    def test_can_cancel_delete_entry(self):
+        self.dsl.ensure_existing_entry()
+        self.dsl.delete_existing_entry()
+        self.dsl.confirm_entry_deletion_requires_confirmation()
+        self.dsl.cancel_entry_deletion()
+        self.dsl.confirm_entry_exists()

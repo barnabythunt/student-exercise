@@ -65,7 +65,11 @@ class Dsl:
         alias = self._encode_alias(name)
         self.driver.delete_existing_register(alias)
 
-    def confirm_deletion_requires_confirmation(self, name=DEFAULT_REGISTER_NAME):
+    def confirm_register_deletion_requires_confirmation(self, name=DEFAULT_REGISTER_NAME):
+        alias = self._decode_alias(name)
+        self.driver.confirm_deletion_requires_confirmation(alias)
+
+    def confirm_entry_deletion_requires_confirmation(self, name=DEFAULT_ENTRY_NAME):
         alias = self._decode_alias(name)
         self.driver.confirm_deletion_requires_confirmation(alias)
 
@@ -107,9 +111,29 @@ class Dsl:
     def update_existing_entry(self, current_name=DEFAULT_ENTRY_NAME, new_name=""):
         current_name_alias = self._encode_alias(current_name)
         new_name_alias = self._encode_alias(new_name)
-        self.driver.update_existing_entry(current_name_alias, new_name_alias)  # new function update_existing_entry
+        self.driver.update_existing_entry(current_name_alias, new_name_alias)
 
     def confirm_register_updated(self, old_name=DEFAULT_ENTRY_NAME, new_name=""):
         old_name_alias = self._decode_alias(old_name)
         new_name_alias = self._decode_alias(new_name)
-        self.driver.confirm_entry_updated(old_name_alias, new_name_alias)  # new function confirm_entry_updated
+        self.driver.confirm_entry_updated(old_name_alias, new_name_alias)
+
+    def delete_existing_entry(self, name=DEFAULT_ENTRY_NAME):
+        alias = self._encode_alias(name)
+        self.driver.delete_existing_entry(alias)
+    
+    def confirm_entry_deletion(self, name=DEFAULT_ENTRY_NAME):
+        alias = self._decode_alias(name)
+        self.driver.confirm_entry_deletion(alias)
+
+    def confirm_entry_deleted(self, name=DEFAULT_ENTRY_NAME):
+        alias = self._decode_alias(name)
+        self.driver.confirm_entry_deleted(alias)
+    
+    def cancel_entry_deletion(self, name=DEFAULT_ENTRY_NAME):
+        alias = self._decode_alias(name)
+        self.driver.cancel_entry_deletion(alias)
+
+    def confirm_entry_exists(self, name=DEFAULT_ENTRY_NAME):
+        alias = self._decode_alias(name)
+        self.driver.confirm_entry_exists(alias)
