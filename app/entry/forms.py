@@ -82,3 +82,30 @@ class EntryForm(FlaskForm):
         existing = Entry.query.filter_by(register_id=self.register_id, name=field.data).first()
         if existing:
             raise ValidationError("Name already in use")
+
+class EntryDeleteForm(FlaskForm):
+    """
+    A form used to confirm the deletion of an Entry.
+
+    This form intentionally keeps the confirmation checkbox very explicit,
+    to ensure users do not accidentally delete data.
+
+    Fields
+    ------
+    confirm : BooleanField
+        A checkbox that the user must tick to confirm deletion.
+        If left unticked, the validation will fail and deletion will not occur.
+    submit : SubmitField
+        A GOV.UK-styled delete button.
+    """
+
+    # A checkbox that the user must actively tick to continue.
+    # Using InputRequired ensures the user can't accidentally skip it.
+    confirm = BooleanField(
+        "I'm sure",
+        widget=GovCheckboxInput(),
+        validators=[InputRequired(message="Select if you want to delete this entry")],
+    )
+
+    # Submit button styled using GOV.UK design system components.
+    submit: SubmitField = SubmitField("Delete", widget=GovSubmitInput())
