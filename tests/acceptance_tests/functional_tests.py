@@ -93,16 +93,16 @@ class FunctionalTests(TestCase):
 
     def test_edit_entry_name_required(self):
         self.dsl.ensure_existing_entry()
-        self.dsl.update_existing_entry(name="") #update_existing_entry is new
+        self.dsl.update_existing_entry(name="")  # update_existing_entry is new
         self.dsl.confirm_name_required_validation_error()
-    
+
     def test_edit_entry_name_must_be_unique(self):
         self.dsl.ensure_existing_entry(name="Existing entry")
         self.dsl.add_entry_to_register(name="Another entry")
         self.dsl.update_existing_entry(current_name="Another entry", new_name="Existing entry")
         self.dsl.confirm_name_already_exists_validation_error()
-    
+
     def test_can_edit_entry(self):
         self.dsl.ensure_existing_entry(name="Old")
         self.dsl.update_existing_entry(current_name="Old", new_name="New")
-        self.dsl.confirm_entry_updated(old_name="Old", new_name="New") # confirm_entry_updated is new
+        self.dsl.confirm_entry_updated(old_name="Old", new_name="New")  # confirm_entry_updated is new
