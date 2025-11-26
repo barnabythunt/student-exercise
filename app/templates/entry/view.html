@@ -22,6 +22,11 @@
         'text': "Edit entry",
         'href': url_for('register.entry.edit', register_id=entry.register_id, entry_id=entry.id)
       }) }}
+      {{ govukButton({
+        'text': "Delete entry",
+        'classes': "govuk-button--secondary",
+        'href': url_for('register.entry.delete', register_id=entry.register_id, entry_id=entry.id)
+      }) }}
     </div>
   </div>
 </div>
