@@ -80,7 +80,7 @@ def edit(register_id: UUID, entry_id: UUID) -> str | Response:
     """
     # Load the register or show 404 if it doesn't exist
     entry: Entry = db.one_or_404(db.select(Entry).filter_by(register_id=register_id, id=entry_id))
-    form = EntryForm()
+    form = EntryForm(register_id)
 
     if request.method == "GET":
         # Pre-fill the form with current data so user can edit it
@@ -93,7 +93,7 @@ def edit(register_id: UUID, entry_id: UUID) -> str | Response:
         db.session.commit()
 
         flash("Successfully updated entry", "success")
-        return redirect(url_for("register.index"))
+        return redirect(url_for("register.entry.view", register_id=entry.register_id, entry_id=entry_id))
 
     # Render the form page for GET requests or failed validation
     return render_template("entry/edit.html", entry=entry, form=form)

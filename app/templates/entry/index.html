@@ -1,0 +1,27 @@
+{%- extends "base.html" -%}
+
+{%- from 'govuk_frontend_jinja/components/button/macro.html' import govukButton -%}
+
+{%- block beforeContent -%}
+{{ super() }}
+{%- endblock -%}
+
+{%- block content -%}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ super() }}
+    <h1 class="govuk-heading-l">Entries</h1>
+    {{ govukButton({
+      'text': "Create new entry",
+      'href': url_for('register.entry.add')
+    }) }}
+    <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+      {% for entry in entries %}
+      <li>
+        <a class="govuk-link" href="{{ url_for('register.entry.view', register_id=entry.register_id, entry_id=entry_id) }}">{{ entry.name }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{%- endblock -%}
