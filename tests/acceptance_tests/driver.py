@@ -24,7 +24,7 @@ class Driver:
     def _navigate_to_entries(self):
         self._find_and_click(By.LINK_TEXT, "Entries")
 
-        register_heading = self.browser.find_element(By.TAG_NAME, "h1")
+        entry_heading = self.browser.find_element(By.TAG_NAME, "h1")
         assert entry_heading.text == "Entries"
 
     def _view_register(self, name):
