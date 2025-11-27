@@ -17,6 +17,7 @@
     {{ super() }}
     <span class="govuk-caption-l">Entry</span>
     <h1 class="govuk-heading-l">{{ entry.name }}</h1>
+    <div class="govuk-body">£{{ entry.price }}</div>
     <div class="govuk-button-group">
       {{ govukButton({
         'text': "Edit entry",

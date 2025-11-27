@@ -171,7 +171,7 @@ class Driver:
         except NoSuchElementException:
             pass
 
-    def add_entry_to_register(self, register, entry_name):
+    def add_entry_to_register(self, register, entry_name, entry_price):
         self._navigate_to_registers()
         self._view_register(register)
 
@@ -182,6 +182,9 @@ class Driver:
 
         name_field = self.browser.find_element(By.NAME, "name")
         name_field.send_keys(entry_name)
+
+        price_field = self.browser.find_element(By.NAME, "price")
+        price_field.send_keys(entry_price)
 
         self._find_and_click(By.NAME, "submit")
 

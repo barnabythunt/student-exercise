@@ -17,7 +17,7 @@ from govuk_frontend_wtf.wtforms_widgets import (
     GovSubmitInput,
     GovTextInput,
 )
-from wtforms.fields import BooleanField, StringField, SubmitField
+from wtforms.fields import BooleanField, IntegerField, StringField, SubmitField
 from wtforms.validators import InputRequired, ValidationError
 
 from app.models import Entry
@@ -50,6 +50,11 @@ class EntryForm(FlaskForm):
         "Name",
         widget=GovTextInput(),
         validators=[InputRequired(message="Enter a name")],
+    )
+    price = IntegerField(
+        "Price",
+        widget=GovTextInput("number"),
+        validators=[InputRequired(message="Enter the price the house was sold at")],
     )
 
     # A standard GOV.UK-styled submit button.

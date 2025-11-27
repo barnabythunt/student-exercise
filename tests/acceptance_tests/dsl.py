@@ -8,6 +8,7 @@ class Dsl:
 
     DEFAULT_REGISTER_NAME = "Register of Things"
     DEFAULT_ENTRY_NAME = "An entry"
+    DEFAULT_ENTRY_PRICE = 100000
 
     def __init__(self, driver: Driver):
         self.driver = driver
@@ -89,13 +90,15 @@ class Dsl:
         alias = self._decode_alias(name)
         self.driver.confirm_register_exists(alias)
 
-    def ensure_existing_entry(self, register=DEFAULT_REGISTER_NAME, name=DEFAULT_ENTRY_NAME):
-        self.add_entry_to_register(register=register, entry_name=name)
+    def ensure_existing_entry(self, register=DEFAULT_REGISTER_NAME, name=DEFAULT_ENTRY_NAME, price=DEFAULT_ENTRY_PRICE):
+        self.add_entry_to_register(register=register, entry_name=name, price=price)
         self.confirm_entry_added(register=register, entry_name=name)
 
-    def add_entry_to_register(self, register=DEFAULT_REGISTER_NAME, entry_name=DEFAULT_ENTRY_NAME):
+    def add_entry_to_register(
+        self, register=DEFAULT_REGISTER_NAME, entry_name=DEFAULT_ENTRY_NAME, price=DEFAULT_ENTRY_PRICE
+    ):
         self.driver.add_entry_to_register(
-            register=self._encode_alias(register), entry_name=self._encode_alias(entry_name)
+            register=self._encode_alias(register), entry_name=self._encode_alias(entry_name), entry_price=price
         )
 
     def confirm_entry_added(self, register=DEFAULT_REGISTER_NAME, entry_name=DEFAULT_ENTRY_NAME):

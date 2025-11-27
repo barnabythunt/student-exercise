@@ -13,11 +13,12 @@
         {{ form.name(params={
             'spellcheck': true
         }) }}
+        {{ form.price }}
         <div class="govuk-button-group">
             {{ form.submit(params={
             'preventDoubleClick': true
             }) }}
-            <a class="govuk-link" href="{{ url_for('register.entry.view', register_id=entry.register_id, entry_id=entry_id)}}">Cancel</a>
+            <a class="govuk-link" href="{{ url_for('register.entry.view', register_id=entry.register_id, entry_id=entry.id)}}">Cancel</a>
         </div>
     </form>
   </div>
